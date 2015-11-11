@@ -1,0 +1,25 @@
+<center>
+
+<h1>Welcome to Shoes4YOU.com!</h1>
+
+
+  <table border="1" style="width:100%">
+  <tr class="header">
+    <th>Item</th>
+    <th>Size</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Image</th>
+  </tr>
+<% @product_list.each do |shoe| %>
+  <tr>
+    <td class="name"><%= shoe.name %></td>
+    <td class="size"><%= shoe.size %></td>
+    <td class="price"><%= shoe.price %></td>
+    <td class="description"><%= shoe.description %></td>
+    <td class="image"><img src="<%= shoe.image %>"</img></td>
+  </tr>
+<% end %>
+</table>
+
+</center>
