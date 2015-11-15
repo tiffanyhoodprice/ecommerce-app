@@ -1,5 +1,5 @@
 <center>
-  <h1>Welcome to Shoes4YOU.com!</h1>
+  <h1 class="title">Welcome to Shoes4YOU.com!</h1>
 </center>
 <div class="row">
 <% @product_list.each do |shoe| %>
@@ -10,7 +10,7 @@
     <p>Size: <%= shoe.size %></p>
     <p>Price: <%= shoe.price %></p>
     <p>Description: <%= shoe.description %></p>
-    <img src="<%= shoe.image %>" class="img-responsive" alt="Responsive image">
+    <img src="<%= shoe.image %>" class="img-responsive">
     </div>
   </div>
 <% end %>
