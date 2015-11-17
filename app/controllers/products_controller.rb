@@ -1,8 +1,17 @@
 class ProductsController < ApplicationController
 
   def index
-    @product_list = Product.all
+    if params[:view] == "discounted"
+      @product_list = Product.where("price < ?", 50)
+    else
+      @product_list = Product.all
+    end
   end
+  # def index
+  #  @product_list = Product.all
+
+
+  # end
 
   def new
   end
@@ -55,5 +64,6 @@ class ProductsController < ApplicationController
     flash[:danger] = "#{product.name} has been deleted."
     redirect_to "/products"
   end
+
 
 end

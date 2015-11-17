@@ -3,9 +3,12 @@
 
 <p>Item: <%= @product.name %></p>
     <p>Size: <%= @product.size %></p>
-    <p>Price: <%= @product.price %></p>
     <p>Description: <%= @product.description %></p>
     <img src="<%= @product.image %>" class="img-responsive" alt="responsive image">
+    <p> <%= @product.sale_message %></p>
+    <p>Price: <%= @product.price %></p>
+    <p>Tax: $<%= @product.tax %> </p>
+    <p>Total: $<%= @product.total %> </p>
 
 <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
 <%= link_to "Edit", "/products/#{@product.id}/edit" %>

@@ -1,5 +1,6 @@
 <center>
   <h1 class="title">Welcome to<br>Shoes4YOU.com</h1>
+  <%= link_to "Show Discounted Items", "/products?view=discounted" %>
 </center>
 <div class="row">
 <% @product_list.each do |shoe| %>
@@ -11,8 +12,10 @@
     <p>Price: <%= shoe.price %></p>
     <p>Description: <%= shoe.description %></p>
     <img src="<%= shoe.image %>" class="img-responsive">
+   
     </a>
+
   </div>
-  </div>
+ </div>
 <% end %>
 </div>
