@@ -6,10 +6,19 @@
     <p>Description: <%= @product.description %></p>
     <img src="<%= @product.image %>" class="img-responsive" alt="responsive image">
     <p> <%= @product.sale_message %></p>
-    <p>Price: <%= @product.price %></p>
-    <p>Tax: $<%= @product.tax %> </p>
-    <p>Total: $<%= @product.total %> </p>
+    <p>Price: <%= number_to_currency(@product.price) %></p>
+    <p>Tax: <%= number_to_currency(@product.tax) %> </p>
+    <p>Total: <%= number_to_currency(@product.total) %> </p>
 
-<%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
-<%= link_to "Edit", "/products/#{@product.id}/edit" %>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Modify/Delete
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#"><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></a></li>
+    <li><a href="#"><%= link_to "Edit", "/products/#{@product.id}/edit" %></a></li>
+  </ul>
+</div>
+
 

@@ -3,19 +3,17 @@
   <%= link_to "Show Discounted Items", "/products?view=discounted" %>
 </center>
 <div class="row">
-<% @product_list.each do |shoe| %>
+  <% @product_list.each do |shoe| %>
   <div class="col-md-3">
     <div class="product-box">
       <a href="/products/<%= shoe.id %>"> 
-    <p> Item: <%= shoe.name %></p>
-    <p>Size: <%= shoe.size %></p>
-    <p>Price: <%= shoe.price %></p>
-    <p>Description: <%= shoe.description %></p>
-    <img src="<%= shoe.image %>" class="img-responsive">
-   
-    </a>
-
+        <p> Item: <%= shoe.name %></p>
+        <p>Size: <%= shoe.size %></p>
+        <p>Price: <%= number_to_currency(shoe.price) %></p>
+        <p>Description: <%= shoe.description %></p>
+        <img src="<%= shoe.image %>" class="img-responsive"> 
+      </a>
+    </div>
   </div>
- </div>
-<% end %>
+  <% end %>
 </div>

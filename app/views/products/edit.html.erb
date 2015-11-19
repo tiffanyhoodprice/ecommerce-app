@@ -1,18 +1,18 @@
 <%= form_tag "/products/#{@product.id}/edit", method: :patch do %>
-  <div>
+<div>
 <%= label_tag :name %>
-<%= text_field_tag :name, @product.name %>
-  </div>
+<%= text_field_tag :product_name, @product.name %>
+</div>
 
 <div>
 <%= label_tag :size %>
-<%= text_area_tag :size, @product.size%>
-  </div> 
+<%= text_field_tag :size, @product.size%>
+</div> 
 
 <div>
 <%= label_tag :price %>
-<%= text_area_tag :price, @product.price %>
-  </div> 
+<%= text_field_tag :price, @product.price %>
+</div> 
 
 <div>
 <%= label_tag :description %>

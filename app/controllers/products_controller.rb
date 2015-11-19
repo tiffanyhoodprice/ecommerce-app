@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
     id = params[:id]
     product = Product.find_by(id: id)
 
-    item = params[:name]
+    item = params[:product_name]
     size = params[:size]
     price = params[:price]
     description = params[:description]
