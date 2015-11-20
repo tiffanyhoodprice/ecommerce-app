@@ -3,7 +3,13 @@ class ProductsController < ApplicationController
   def index
     if params[:view] == "discounted"
       @product_list = Product.where("price < ?", 50)
-    else
+    elsif
+      params[:view] == "order_by_price"
+      @product_list = Product.order(:price)
+    elsif
+      params[:view] == "order_by_price_desc"
+      @product_list = Product.order(price: :desc)
+    else 
       @product_list = Product.all
     end
   end
@@ -29,7 +35,11 @@ class ProductsController < ApplicationController
 
   def show
     id = params[:id]
-    @product = Product.find_by(id: id)
+    if params[:id] = "random"
+      @product = Product.all.sample
+    else
+      @product = Product.find_by(id: id)
+    end
   end
 
   def edit
@@ -65,5 +75,10 @@ class ProductsController < ApplicationController
     redirect_to "/products"
   end
 
+  def search
+    search_term = params[:search]
+    @product_list = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+    render :index
+  end
 
 end
