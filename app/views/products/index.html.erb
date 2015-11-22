@@ -9,12 +9,12 @@
   <div class="col-md-3">
     <div class="product-box">
       <a href="/products/<%= shoe.id %>"> 
-        <p> Item: <%= shoe.name %></p>
+        <p>Item: <%= shoe.name %></p></a>
         <p>Size: <%= shoe.size %></p>
         <p>Price: <%= number_to_currency(shoe.price) %></p>
         <p>Description: <%= shoe.description %></p>
-        <img src="<%= shoe.image %>" class="img-responsive">
-         </a>
+         
+         <img src="<%= shoe.images.first.image_url %>" class="img-responsive">
     
     </div>
     </div>
