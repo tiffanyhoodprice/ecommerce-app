@@ -1,6 +1,11 @@
 <%= form_tag "/products/#{@product.id}/edit", method: :patch do %>
 <div>
-<%= label_tag :name %>
+<%= label_tag :user %>
+<%= text_field_tag :user, @product.user.email %>
+</div>
+
+<div>
+<%= label_tag :product_name %>
 <%= text_field_tag :product_name, @product.name %>
 </div>
 
@@ -21,7 +26,7 @@
 
 <div>
 <%= label_tag :image %>
-<%= text_area_tag :image, @product.image %>
+<%= text_area_tag :image, @product.images.first.image_url %>
 </div>
 
 <div>

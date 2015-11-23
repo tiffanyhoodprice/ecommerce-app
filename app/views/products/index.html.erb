@@ -1,8 +1,12 @@
 <center>
   <h1 class="title">Welcome to<br>Shoes4YOU.com</h1>
+  <% if current_user %>
+  <a><%= current_user.email %> is signed in.</a>
+  <% end %><p>
   <%= link_to "Show Discounted Items", "/products?view=discounted" %> <br><%= link_to "Price(lowest to highest)", "/products?view=order_by_price" %><br>
   <%= link_to "Price(highest to lowest)", "/products?view=order_by_price_desc" %><br>
-   <%= link_to "Random Product", "/products/random" %>
+  <%= link_to "Random Product", "/products/random" %><br>
+
 </center>
 <div class="row">
   <% @product_list.each do |shoe| %>
@@ -13,11 +17,11 @@
         <p>Size: <%= shoe.size %></p>
         <p>Price: <%= number_to_currency(shoe.price) %></p>
         <p>Description: <%= shoe.description %></p>
-         
-         <img src="<%= shoe.images.first.image_url %>" class="img-responsive">
-    
+
+        <img src="<%= shoe.images.first.image_url %>" class="img-responsive">
+
+      </div>
     </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
