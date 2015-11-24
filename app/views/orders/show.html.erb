@@ -7,3 +7,6 @@
     <p>Subtotal: <%= number_to_currency(@order.subtotal) %><p/>
     <p>Tax: <%= number_to_currency(@order.tax) %> </p>
     <p>Total: <%= number_to_currency(@order.total) %> </p>
+    
+    <img src="<%= @product.images.first.image_url %>" class="img-responsive" alt="responsive image">
+    
