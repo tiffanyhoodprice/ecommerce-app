@@ -28,7 +28,8 @@ class ProductsController < ApplicationController
     price = params[:price]
     description = params[:description]
     image = params[:image]
-    shoe = Product.create(name: item, size: size, price: price, description: description, image: image, user_id: current_user.id)
+    supplier = params[:supplier]
+    shoe = Product.create(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
     flash[:success] = "Shoe Created"
     redirect_to "/products/#{shoe.id}"
   end
@@ -55,8 +56,9 @@ class ProductsController < ApplicationController
     size = params[:size]
     price = params[:price]
     description = params[:description]
+    supplier = params[:supplier]
     image = params[:image]
-    product.update(name: item, size: size, price: price, description: description, image: image, user_id: current_user.id)
+    product.update(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
     flash[:success] = "#{product.name} has been updated." #Flash is special to Rails. This is a hash. Assigning value 'shoe updated' to 'key of success'
     redirect_to "/products/#{product.id}"
   end

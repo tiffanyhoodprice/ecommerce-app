@@ -22,6 +22,22 @@
     <li><a href="#"><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></a></li>
     <li><a href="#"><%= link_to "Edit", "/products/#{@product.id}/edit" %></a></li>
   </ul>
+
+ <%= form_tag '/orders', method: :post do %> 
+  <div>
+<%= label_tag :quantity %>
+<%= text_field_tag :quantity %>
+  </div>
+    <div>
+<%= label_tag :product_id %>
+<%= text_field_tag :product_id %>
+  </div>
+
+<div>
+<%= submit_tag "Buy Now" %>
+</div>
+<% end %>
+   
 </div>
 
 

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get '/contact', to: 'products#contact'
   post '/products/search', to: 'products#search'
 
+  get '/orders', to: 'orders#index'
+  post '/orders', to: 'orders#create'
+  get '/orders/:id', to: 'orders#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

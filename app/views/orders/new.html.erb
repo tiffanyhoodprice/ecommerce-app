@@ -6,12 +6,12 @@
 
    <div>
 <%= label_tag :product_name %>
-<%= text_field_tag :product_name %>
+<%= text_field_tag :product_id %>
   </div>
 
 <div>
-<%= label_tag :size %>
-<%= text_area_tag :size %>
+<%= label_tag :quantity %>
+<%= text_area_tag :quantity %>
   </div> 
 
 <div>
@@ -20,22 +20,8 @@
   </div> 
 
 <div>
-<%= label_tag :description %>
-<%= text_area_tag :description %>
-</div>
-
-<div>
-<%= label_tag :supplier %>
-<%= text_area_tag :supplier %>
-</div>
-
-<div>
-<%= label_tag :image %>
-<%= text_area_tag :image %>
-</div>
-
-<div>
 <%= submit_tag "Submit Product Info" %>
 </div>
 
-<% end %>
+<% end %> 
+
