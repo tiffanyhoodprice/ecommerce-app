@@ -28,6 +28,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'seed_dump'
 
 gem 'devise'
+gem 'pg', group: :production
+
+gem 'rails_12factor', group: :production
 # Use Unicorn as the app server
 # gem 'unicorn'
 
