@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     size = params[:size]
     price = params[:price]
     description = params[:description]
-    supplier = params[:supplier]
+    supplier = params[:supplier].to_i
     image = params[:image]
     product.update(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
     flash[:success] = "#{product.name} has been updated." #Flash is special to Rails. This is a hash. Assigning value 'shoe updated' to 'key of success'
