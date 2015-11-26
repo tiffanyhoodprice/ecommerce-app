@@ -7,8 +7,13 @@ class OrdersController < ApplicationController
     tax = quantity * product.tax
     total = subtotal + tax
     order = Order.create(user_id: current_user.id, product_id: product.id, quantity: quantity, subtotal: subtotal, tax: tax, total: total)
-    flash[:success] = "Order Completed"
-    redirect_to "/orders/#{order.id}"
+    if order.save
+      flash[:success] = "Order Completed"
+      redirect_to "/orders/#{order.id}"
+    else
+      flash[:danger] = "Your order did not complete. Be sure to enter the quantity of items desired. Please try again."
+      render :index
+    end
   end
 
   def show

@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   # end
 
   def new
+    @product = Product.new
   end
 
   def create
@@ -28,10 +29,15 @@ class ProductsController < ApplicationController
     price = params[:price]
     description = params[:description]
     image = params[:image]
-    supplier = params[:supplier].to_i
-    shoe = Product.create(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
-    flash[:success] = "Shoe Created"
-    redirect_to "/products/#{shoe.id}"
+  
+    shoe = Product.create(name: item, size: size, price: price, description: description, user_id: current_user.id)
+    if shoe.save
+      flash[:success] = "Shoe Created"
+      redirect_to "/products/#{shoe.id}"
+    else
+      flash[:danger] = "Did Not Save. ERROR!"
+      render :new
+    end
   end
 
   def show
@@ -56,7 +62,7 @@ class ProductsController < ApplicationController
     size = params[:size]
     price = params[:price]
     description = params[:description]
-    supplier = params[:supplier].to_i
+    supplier = params[:supplier]
     image = params[:image]
     product.update(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
     flash[:success] = "#{product.name} has been updated." #Flash is special to Rails. This is a hash. Assigning value 'shoe updated' to 'key of success'

@@ -4,6 +4,13 @@ class Product < ActiveRecord::Base
   has_many :images
   has_many :orders
 
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :description, presence: true
+
+  validates :user_id, presence: true
+  validates :product_id, presence: true
+
   # def self.get_discounted #class method because has 'self'
   #   Product.where("price <?", 50)
   # end
