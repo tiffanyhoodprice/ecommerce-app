@@ -1,5 +1,5 @@
 <%= form_tag '/products', method: :post do %>
-<div>
+
   <ul>
     <% if @product && @product.errors.any? %>
     <% @product.errors.full_messages.each do %>
@@ -7,6 +7,7 @@
     <% end %>
     <% end %>
   </ul>
+ <div>
   <%= label_tag :user %>
   <%= text_field_tag :user, current_user.email %>
 </div>

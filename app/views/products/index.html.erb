@@ -17,6 +17,7 @@
         <p>Size: <%= shoe.size %></p>
         <p>Price: <%= number_to_currency(shoe.price) %></p>
         <p>Description: <%= shoe.description %></p>
+        <p>Supplier: <%= shoe.supplier.name %>
 
         <img src="<%= shoe.images.first.image_url %>" class="img-responsive">
 
