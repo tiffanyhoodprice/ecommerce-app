@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    @categories = Category.all
     if params[:view] == "discounted"
       @product_list = Product.where("price < ?", 50)
     elsif
@@ -9,6 +10,9 @@ class ProductsController < ApplicationController
     elsif
       params[:view] == "order_by_price_desc"
       @product_list = Product.order(price: :desc)
+    elsif 
+      params[:category]
+      @product_list = Category.find_by(name: params[:category]).products    
     else 
       @product_list = Product.all
     end

@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
     rand_record = Product.first(:conditions => [ "id >= ?", rand_id])
   end
 
-
 end
