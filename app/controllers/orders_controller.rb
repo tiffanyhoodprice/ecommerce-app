@@ -1,25 +1,22 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user! #won't allow anyone not signed in to access these actions
 
- def create #for each action, must have a function in the controller (create, and show)
-    product = Product.find_by(id: params[:product_id])
-    quantity = params[:quantity].to_i #because this is coming from a form, remember that it has to be converted to an integer even though the data type is marked as an integer
-    subtotal = quantity * product.price
-    tax = quantity * product.tax
+  def create #for each action, must have a function in the controller (create, and show)
+    to_buy_products = current_user.carted_products.where(status: "carted") 
+    subtotal = calculate_subtotal(to_buy_products)
+    tax = calculate_tax(to_buy_products)
     total = subtotal + tax
-    order = Order.create(user_id: current_user.id, product_id: product.id, quantity: quantity, subtotal: subtotal, tax: tax, total: total)
-    if order.save
+    @order = Order.new(user_id: current_user.id, subtotal: subtotal, tax: tax, total: total)
+    if @order.save
+      to_buy_products.update_all(status: "purchased", order_id: @order.id)
       flash[:success] = "Order Completed"
-      redirect_to "/orders/#{order.id}"
+      redirect_to "/orders/#{@order.id}"
     else
-      flash[:danger] = "Your order did not complete. Be sure to enter the quantity of items desired. Please try again."
-      render :index
+      render template: "carted_products/index" 
     end
   end
 
   def show
-    id = params[:id]
-    @order = Order.find_by(id: id)
-    @product = Product.find_by(id: @order.product_id) #Need to review this some more.
+    @order = Order.find_by(id: params[:id])
   end
-
 end

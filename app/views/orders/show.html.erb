@@ -1,12 +1,27 @@
-<h1>Your Order</h1>
-<p>Order Number: <%= @order.id %></p>
-<p>Item: <%= @order.product_id %></p>
-<p>Quantity: <%= @order.quantity %></p>
-    <p>Description: <%= @product.description %></p>
-    <p>Price: <%= number_to_currency(@product.price) %></p>
-    <p>Subtotal: <%= number_to_currency(@order.subtotal) %><p/>
-    <p>Tax: <%= number_to_currency(@order.tax) %> </p>
-    <p>Total: <%= number_to_currency(@order.total) %> </p>
-    
-    <img src="<%= @product.images.first.image_url %>" class="img-responsive" alt="responsive image">
-    
+<h1> Order </h1>
+<p>Order ID:</p>
+<table class="table">
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Image</th>
+  </tr>
+  <% @order.carted_products.each do |carted_product| %>
+  <tr>
+    <td><%= carted_product.product.name %></td>
+    <td><%= carted_product.quantity %></td>
+    <td><img src="<%= Image.find_by(product_id: carted_product.product_id).image_url %>"></td> 
+  </tr>
+ <% end %>
+</table>
+ 
+<table class='table'>
+<tr>
+    <th>Subtotal:</th>
+    <th>$<%= @order.subtotal %></th>
+    <th>Tax:</th>
+    <th>$<%= @order.tax %></th>
+    <th>Total:</th> 
+    <th>$<%= @order.total %></th> 
+  </tr>
+</table>

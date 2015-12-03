@@ -1,9 +1,9 @@
 class Order < ActiveRecord::Base
   belongs_to :user
-  belongs_to :product
 
-  validates :user, :product, presence: true
-  validates :quantity, presence: true
-  validates_numericality_of :quantity, greater_than: 0
+  has_many :carted_products
+  has_many :products, through: :carted_products
+
+  validates :user, presence: true
   
 end

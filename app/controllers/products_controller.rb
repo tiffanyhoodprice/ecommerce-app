@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+before_action :authenticate_admin!, except: [:index, :show, :search]
+# before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
@@ -24,7 +26,11 @@ class ProductsController < ApplicationController
   # end
 
   def new
+    if current_user && current_user.admin?
     @product = Product.new
+    else
+    redirect_to "/"
+    end
   end
 
   def create
@@ -45,6 +51,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @carted_product = CartedProduct.new
     id = params[:id]
     if params[:id] == "random"
       @product = Product.all.sample
