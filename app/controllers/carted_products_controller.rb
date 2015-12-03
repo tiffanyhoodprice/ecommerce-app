@@ -5,6 +5,7 @@ class CartedProductsController < ApplicationController
     quantity = params[:quantity].to_i #because this is coming from a form, remember that it has to be converted to an integer even though the data type is marked as an integer
     @carted_product = CartedProduct.new(user_id: current_user.id, product_id: @product.id, quantity: quantity, status: "carted")
     if @carted_product.save
+      session[:cart_count] += 1
       flash[:success] = "Items have been placed in your shopping cart"
       redirect_to "/carted_products"
     else
@@ -29,6 +30,7 @@ class CartedProductsController < ApplicationController
     carted_product = CartedProduct.find_by(id: params[:id])
     carted_product.status = "removed"
     if carted_product.save
+      session[:cart_count] -= 1
       flash[:warning] = "#{carted_product.quantity} #{carted_product.product.name}(s) has been removed from your shopping cart."
     else
       flash[:danger] = "Product not removed from cart!"
