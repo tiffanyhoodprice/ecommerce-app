@@ -1,0 +1,12 @@
+<h1>Supplier list</h1>
+<% @suppliers.each do |supplier| %>
+<ul>
+  <li><%= supplier.first_name  %></li>
+  <li><%= supplier.last_name  %></li>
+  <li><%= supplier.name  %></li>
+  <li><%= supplier.email  %></li>
+  <li><%= supplier.phone  %></li>
+  <li><%= supplier.active  %></li>
+
+</ul>
+<% end %>

@@ -18,8 +18,8 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#"><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></a></li>
-    <li><a href="#"><%= link_to "Edit", "/products/#{@product.id}/edit" %></a></li>
+    <li><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></li>
+    <li><%= link_to "Edit", "/products/#{@product.id}/edit" %></li>
   </ul>
 
   <% @product.categories.each do |category| %>

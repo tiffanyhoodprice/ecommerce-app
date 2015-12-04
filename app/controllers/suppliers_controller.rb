@@ -1,19 +1,43 @@
 class SuppliersController < ApplicationController
 
+
+  def index
+    @suppliers = Supplier.all
+  end
+
   def new
     @supplier = Supplier.new
   end
 
   def create
-    name = params[:name]
-    email = params[:email]
-    phone = params[:phone]
-    supplier = Supplier.create(name: name, email: email, phone: phone)
+    @supplier = Supplier.new(params[:supplier])
+    if @supplier.save
+      redirect_to "/suppliers/#{@supplier.id}"
+    else
+      render :new
+    end
   end
 
   def show
-    id = params[:id]
-    @supplier = Product.find_by(id: id)
+    @supplier = Supplier.find_by(id: params[:id])
+  end
+
+  def edit
+    @supplier = Supplier.find_by(id: params[:id])
+  end
+
+  def update
+    @supplier = Supplier.find_by(id: params[:id])
+    if @supplier.update(params[:supplier])
+      redirect_to "/suppliers/#{@supplier.id}"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    Supplier.find_by(id: params[:id]).update(active: false)
+    redirect_to "/suppliers"
   end
 
 end

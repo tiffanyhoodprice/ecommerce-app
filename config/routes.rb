@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "products#index"
+  resources :suppliers
+  
   get '/products', to: 'products#index'
   # get '/add_product', to: 'products#add_product'
   # post '/create_product', to: 'products#create_product'
@@ -17,11 +19,6 @@ Rails.application.routes.draw do
   post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show'
   patch '/orders/:id/edit', to: 'orders#update'
-
-  get '/suppliers', to: 'suppliers#index'
-  post '/suppliers', to: 'suppliers#create'
-  get '/suppliers/:id', to: 'suppliers#show'
-  patch '/suppliers/:id/edit', to: 'suppliers#update'
 
   get '/carted_products', to: 'carted_products#index'
   post '/carted_products', to: 'carted_products#create'
