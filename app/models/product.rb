@@ -9,12 +9,14 @@ class Product < ActiveRecord::Base
   has_many :carted_products
   has_many :orders, through: :carted_products
 
+  accepts_nested_attributes_for :images
+
   validates :name, presence: true
   validates :price, presence: true
   validates :description, presence: true
 
   validates :user_id, presence: true
-  validates :product_id, presence: true
+  # validates :product_id, presence: true
 
   # def self.get_discounted #class method because has 'self'
   #   Product.where("price <?", 50)

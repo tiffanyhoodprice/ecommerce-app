@@ -1,51 +1,10 @@
-<%= form_tag '/products', method: :post do %>
+<ul>
+  <% if @product && @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message|%>
+  <li> <%= message %></li>
+  <% end %>
+  <% end %>
+</ul>
+<h1>Create a new shoe item:</h1>
 
-  <ul>
-    <% if @product && @product.errors.any? %>
-    <% @product.errors.full_messages.each do %>
-    <li> <%= message %></li>
-    <% end %>
-    <% end %>
-  </ul>
- <div>
-  <%= label_tag :user %>
-  <%= text_field_tag :user, current_user.email %>
-</div>
-
-<div>
-  <%= label_tag :product_name %>
-  <%= text_field_tag :product_name %>
-</div>
-
-<div>
-<%= label_tag :size %>
-<%= text_area_tag :size %>
-  </div> 
-
-<div>
-<%= label_tag :price %>
-<%= text_area_tag :price %>
-  </div> 
-
-<div>
-<%= label_tag :description %>
-<%= text_area_tag :description %>
-</div>
-
-<div>
-<%= label_tag :supplier %>
-<%= text_area_tag :supplier %>
-</div>
-
-<div>
-<%= label_tag :image %>
-<%= text_area_tag :image %>
-</div>
-
-<div>
-<%= submit_tag "Submit Product Info" %>
-</div>
-<div><%= label_tag :supplier %>
-  <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
-</div>
-<% end %>
+<%= render "form" %>

@@ -26,28 +26,39 @@ before_action :authenticate_admin!, except: [:index, :show, :search]
   # end
 
   def new
-    if current_user && current_user.admin?
+    # if current_user && current_user.admin?
     @product = Product.new
-    else
-    redirect_to "/"
-    end
+    @product.images.build
+    # else
+    # redirect_to "/"
+    # end
   end
 
-  def create
-    item = params[:name]
-    size = params[:size]
-    price = params[:price]
-    description = params[:description]
-    image = params[:image]
-    supplier = params[:supplier]
-    shoe = Product.create(name: item, size: size, price: price, supplier: supplier.name, description: description, user_id: current_user.id)
-    if shoe.save
+  def create  
+    @product = Product.new(product_params)
+    @product.attributes = {user_id: current_user.id}
+    if @product.save
       flash[:success] = "Shoe Created"
-      redirect_to "/products/#{shoe.id}"
+      redirect_to "/products/#{@product.id}"
     else
-      flash[:danger] = "Did Not Save. ERROR!"
+      # flash[:danger] = "Did Not Save. ERROR!"
       render :new
     end
+
+  #   item = params[:name]
+  #   size = params[:size]
+  #   price = params[:price]
+  #   description = params[:description]
+  #   image = params[:image]
+  #   supplier = params[:supplier]
+  #   shoe = Product.new(name: item, size: size, price: price, supplier: supplier.name, description: description, user_id: current_user.id)
+  #   if shoe.save
+  #     flash[:success] = "Shoe Created"
+  #     redirect_to "/products/#{shoe.id}"
+  #   else
+  #     flash[:danger] = "Did Not Save. ERROR!"
+  #     render :new
+  #   end
   end
 
   def show
@@ -66,18 +77,23 @@ before_action :authenticate_admin!, except: [:index, :show, :search]
   end
 
   def update
-    id = params[:id]
-    product = Product.find_by(id: id)
-
-    item = params[:product_name]
-    size = params[:size]
-    price = params[:price]
-    description = params[:description]
-    supplier = params[:supplier]
-    image = params[:image]
-    product.update(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
-    flash[:success] = "#{product.name} has been updated." #Flash is special to Rails. This is a hash. Assigning value 'shoe updated' to 'key of success'
+    @product = Product.find_by(id: params[:id])
+    @product.update(product_params)
+    flash[:success] = "#{product.name} has been updated."
     redirect_to "/products/#{product.id}"
+
+    # id = params[:id]
+    # product = Product.find_by(id: id)
+
+    # item = params[:product_name]
+    # size = params[:size]
+    # price = params[:price]
+    # description = params[:description]
+    # supplier = params[:supplier]
+    # image = params[:image]
+    # product.update(name: item, size: size, price: price, supplier: supplier, description: description, user_id: current_user.id)
+    # flash[:success] = "#{product.name} has been updated." #Flash is special to Rails. This is a hash. Assigning value 'shoe updated' to 'key of success'
+    # redirect_to "/products/#{product.id}"
   end
 
   def destroy
@@ -98,6 +114,13 @@ before_action :authenticate_admin!, except: [:index, :show, :search]
     search_term = params[:search]
     @product_list = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
     render :index
+  end
+
+
+private
+
+  def product_params
+    params.require(:product).permit(:id, :name, :price, :size, :description, :supplier_id, images_attributes: [:image_url])
   end
 
 end

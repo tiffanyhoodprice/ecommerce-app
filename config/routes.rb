@@ -3,17 +3,18 @@ Rails.application.routes.draw do
   root to: "products#index"
   resources :suppliers
   
-  get '/products', to: 'products#index'
-  # get '/add_product', to: 'products#add_product'
-  # post '/create_product', to: 'products#create_product'
-  get '/products/new', to: 'products#new'
-  post '/products', to: 'products#create'
-  get '/products/:id', to: 'products#show'
-  get '/products/:id/edit', to: 'products#edit'
-  patch '/products/:id/edit', to: 'products#update'
-  delete '/products/:id', to: 'products#destroy'
-  get '/contact', to: 'products#contact'
-  post '/products/search', to: 'products#search'
+  resources :products
+  # get '/products', to: 'products#index'
+  # # get '/add_product', to: 'products#add_product'
+  # # post '/create_product', to: 'products#create_product'
+  # get '/products/new', to: 'products#new'
+  # post '/products', to: 'products#create'
+  # get '/products/:id', to: 'products#show'
+  # get '/products/:id/edit', to: 'products#edit'
+  # patch '/products/:id/edit', to: 'products#update'
+  # delete '/products/:id', to: 'products#destroy'
+  # get '/contact', to: 'products#contact'
+  # post '/products/search', to: 'products#search'
 
   
   post '/orders', to: 'orders#create'

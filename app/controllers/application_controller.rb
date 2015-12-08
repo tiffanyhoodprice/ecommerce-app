@@ -30,7 +30,7 @@ private
   end
 
   def authenticate_admin!
-    flash[:danger] = "Try again!"    
+    # flash[:danger] = "Try again!"    
     redirect_to "/" unless current_user && current_user.admin?
   end
 

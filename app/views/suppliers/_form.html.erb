@@ -1,5 +1,9 @@
 <%= form_for @supplier do |f| %> 
   <div>
+    <%= f.label :company_name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>
@@ -7,10 +11,7 @@
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
-  <div>
-    <%= f.label :company_name %>
-    <%= f.text_field :name %>
-  </div>
+ 
   <div>
     <%= f.label :phone_number %>
     <%= f.text_field :phone %>
